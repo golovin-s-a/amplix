@@ -1,1 +1,1 @@
-web: uvicorn wavefy_server:app --host 0.0.0.0 --port $PORT
+web: uvicorn amplix_server:app --host 0.0.0.0 --port $PORT
