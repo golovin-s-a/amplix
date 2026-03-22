@@ -255,10 +255,8 @@ async def api_stream(file_id: str, req: Request):
     uid     = uid_of(req)
     u       = get_user(uid)
 
-    # Ищем в библиотеке
     track = next((t for t in u["tracks"] if t.get("file_id") == file_id), None)
 
-    # Если нет в библиотеке — берём channel/msg_id из параметров
     if not track:
         if not channel or not msg_id:
             return JSONResponse({"error": "track not found"}, status_code=404)
@@ -267,28 +265,20 @@ async def api_stream(file_id: str, req: Request):
     if not _userbot:
         return JSONResponse({"error": "userbot not ready"}, status_code=503)
 
-    # Стримим напрямую через Telethon
-   async def stream_telethon():
-    try:
-        entity = await _userbot.get_entity(track["channel"])
-        msg    = await _userbot.get_messages(entity, ids=int(track["msg_id"]))
-        if not msg or not msg.media:
-            log.error("No message or media found")
-            return
-        async for chunk in _userbot.iter_download(msg.media, chunk_size=512*1024):
-            yield chunk
-    except Exception as e:
-        log.error(f"Stream error: {e}")
+    async def stream_telethon():
+        try:
+            entity = await _userbot.get_entity(track["channel"])
+            msg    = await _userbot.get_messages(entity, ids=int(track["msg_id"]))
+            async for chunk in _userbot.iter_download(msg.media, chunk_size=512*1024):
+                yield chunk
+        except Exception as e:
+            log.error(f"Stream error: {e}")
 
-return StreamingResponse(
-    stream_telethon(),
-    media_type="audio/mpeg",
-    headers={
-        "Accept-Ranges": "none",
-        "Cache-Control": "no-cache",
-        "Transfer-Encoding": "chunked",
-    },
-)
+    return StreamingResponse(
+        stream_telethon(),
+        media_type="audio/mpeg",
+        headers={"Accept-Ranges": "none"},
+    )
 # ── LIBRARY ──────────────────────────────────────
 @app.get("/api/library")
 async def api_library(req: Request):
