@@ -1,82 +1,3 @@
-Skip to content
-golovin-s-a
-amplix
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Files
-Go to file
-t
-frontend
-index.html
-Procfile
-README.md
-amplix_server.py
-amplix_session.session
-index.html
-requirements.txt
-amplix
-/
-index.html
-in
-main
-
-Edit
-
-Preview
-Indent mode
-
-Spaces
-Indent size
-
-2
-Line wrap mode
-
-No wrap
-Editing index.html file contents
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -113,4 +34,1347 @@ body{font-family:'Nunito',sans-serif;color:var(--text);-webkit-touch-callout:non
   -webkit-overflow-scrolling:touch;
   overscroll-behavior-y:contain;scrollbar-width:none;
   padding-bottom:calc(var(--PH)+var(--NH)+var(--SB)+16px);
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
+  opacity:0;transform:translateX(14px);pointer-events:none;
+  transition:opacity .22s,transform .22s;
+}
+.page::-webkit-scrollbar{display:none}
+.page.active{opacity:1;transform:none;pointer-events:all}
+.ph{padding:calc(max(18px,var(--ST))+2px) 18px 0}
+
+/* ── TYPE ── */
+.head1{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.sub1{font-size:12px;color:var(--hint);margin-top:4px}
+.stitle{font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;letter-spacing:-.01em}
+.sall{font-size:10px;font-weight:700;color:var(--hint);letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+.sr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec{padding:0 18px;margin-top:20px}
+
+/* ── HERO ── */
+.hero{
+  margin:14px 18px 0;
+  background:linear-gradient(135deg,#0c2b1a 0%,#091811 100%);
+  border:1px solid rgba(29,185,84,.2);
+  border-radius:var(--R);padding:20px;position:relative;overflow:hidden;cursor:pointer;
+  transition:transform .15s;
+}
+.hero:active{transform:scale(.98)}
+.hero::before{content:'';position:absolute;top:-50px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(29,185,84,.22),transparent 70%);border-radius:50%}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--G);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.hero-h{font-family:'Unbounded',sans-serif;font-size:17px;font-weight:900;line-height:1.25;margin-bottom:5px}
+.hero-s{font-size:11px;color:var(--hint);line-height:1.5}
+.hero-btn{position:absolute;right:18px;bottom:18px;width:44px;height:44px;background:var(--G);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(29,185,84,.45)}
+.hero:active .hero-btn{transform:scale(.88)}
+
+/* ── SEARCH BOX ── */
+.sbox{
+  display:flex;align-items:center;gap:9px;
+  background:var(--bg2);border-radius:12px;
+  padding:11px 14px;margin:12px 18px 0;
+  border:1.5px solid transparent;transition:border-color .2s;
+}
+.sbox:focus-within{border-color:var(--G)}
+.sbox input{
+  flex:1;background:none;border:none;outline:none;
+  font:600 14px 'Nunito',sans-serif;color:var(--text);
+  -webkit-user-select:text;user-select:text;
+}
+.sbox input::placeholder{color:var(--hint)}
+.sbox-clear{color:var(--hint);cursor:pointer;display:none;padding:2px}
+.sbox-clear.show{display:flex}
+
+/* ── SOURCE TABS ── */
+.src-tabs{display:flex;gap:6px;padding:10px 18px 0;overflow-x:auto;scrollbar-width:none}
+.src-tabs::-webkit-scrollbar{display:none}
+.stab{
+  flex-shrink:0;padding:5px 12px;border-radius:50px;
+  font-size:11px;font-weight:700;cursor:pointer;
+  background:var(--sf);border:1px solid var(--bd);
+  color:var(--hint);transition:all .15s;white-space:nowrap;
+}
+.stab.active{background:var(--Gd);border-color:rgba(29,185,84,.35);color:var(--G)}
+.stab:active{transform:scale(.95)}
+
+/* ── SEARCH RESULTS ── */
+.search-wrap{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding-bottom:calc(var(--PH)+var(--NH)+var(--SB)+16px)}
+
+.result-row{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 18px;cursor:pointer;transition:background .1s;
+  position:relative;
+}
+.result-row:active{background:var(--sf)}
+.result-row.in-lib{background:var(--Gd)}
+.result-row.loading-play{opacity:.6;pointer-events:none}
+
+.r-art{
+  width:46px;height:46px;border-radius:var(--Rs);
+  background:linear-gradient(135deg,var(--bg2),#0a0a14);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;position:relative;overflow:hidden;
+}
+.r-art .r-spin{
+  position:absolute;inset:0;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.6);border-radius:var(--Rs);
+}
+.result-row.loading-play .r-spin{display:flex}
+
+.r-meta{flex:1;min-width:0}
+.r-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r-artist{font-size:11px;color:var(--hint);margin-top:2px}
+.r-source{
+  display:inline-block;margin-top:3px;
+  font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;
+}
+.src-tg{background:rgba(36,129,204,.2);color:#4a9edd}
+.src-vk{background:rgba(70,127,183,.2);color:#4a7fb7}
+.src-sc{background:rgba(255,85,0,.15);color:#ff6a1a}
+
+.r-dur{font-size:11px;color:var(--hint);flex-shrink:0}
+.r-add{
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;color:var(--hint);cursor:pointer;flex-shrink:0;
+  transition:all .15s;
+}
+.r-add:active{background:var(--sf);transform:scale(.9)}
+.r-add.added{color:var(--G)}
+
+/* ── TRACK LIST (library) ── */
+.tlist{display:flex;flex-direction:column}
+.trow{display:flex;align-items:center;gap:11px;padding:9px 18px;cursor:pointer;transition:background .1s}
+.trow:active{background:var(--sf)}
+.trow.playing{background:var(--Gd)}
+.trow.playing .tn{color:var(--G)}
+.tnum{width:18px;text-align:center;font-size:12px;color:var(--hint);flex-shrink:0}
+.eq{display:none;width:18px;height:15px;align-items:flex-end;justify-content:center;gap:2px;flex-shrink:0}
+.playing .tnum{display:none}.playing .eq{display:flex}
+.eqb{width:3px;background:var(--G);border-radius:2px;animation:eq .7s ease-in-out infinite}
+.eqb:nth-child(2){animation-delay:.15s}.eqb:nth-child(3){animation-delay:.32s}
+@keyframes eq{0%,100%{height:3px}50%{height:13px}}
+.tart{width:44px;height:44px;border-radius:var(--Rs);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.tmeta{flex:1;min-width:0}
+.tn{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ta{font-size:11px;color:var(--hint);margin-top:1px}
+.tdur{font-size:11px;color:var(--hint);flex-shrink:0}
+.tmore{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--hint);border-radius:50%;cursor:pointer}
+.tmore:active{background:var(--sf);color:var(--text)}
+
+/* ── MINI CARDS ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mcard{background:var(--sf);border:1px solid var(--bd);border-radius:var(--Rs);display:flex;align-items:center;gap:9px;padding:9px;cursor:pointer;transition:background .1s,transform .1s}
+.mcard:active{background:var(--bg2);transform:scale(.97)}
+.mcard.playing{background:var(--Gd);border-color:rgba(29,185,84,.3)}
+.mc-art{width:42px;height:42px;border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mc-name{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-art2{font-size:10px;color:var(--hint);margin-top:2px}
+
+/* ── LIBRARY ITEMS ── */
+.llist{display:flex;flex-direction:column}
+.litem{display:flex;align-items:center;gap:13px;padding:10px 18px;cursor:pointer;transition:background .1s}
+.litem:active{background:var(--sf)}
+.la{width:50px;height:50px;border-radius:9px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;position:relative}
+.lc{position:absolute;bottom:2px;right:2px;background:var(--G);color:#000;font-size:8px;font-weight:800;border-radius:3px;padding:1px 3px;line-height:1}
+.li{flex:1;min-width:0}
+.ln{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lm{font-size:11px;color:var(--hint);margin-top:2px}
+.lch{color:var(--hint)}
+
+/* ── PLAYLIST VIEW ── */
+.plh{display:flex;flex-direction:column;align-items:center;padding:16px 18px 12px;gap:10px}
+.plc{width:136px;height:136px;border-radius:14px;background:linear-gradient(135deg,#142b1e,#0b1c12);display:flex;align-items:center;justify-content:center;font-size:58px;box-shadow:0 12px 40px rgba(0,0,0,.55)}
+.pln{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;text-align:center;margin-top:4px}
+.plm{font-size:12px;color:var(--hint);margin-top:3px;text-align:center}
+.pla{display:flex;gap:10px;margin-top:10px}
+.plbig{display:flex;align-items:center;gap:8px;background:var(--G);color:#000;font-weight:700;font-size:13px;padding:10px 20px;border-radius:50px;cursor:pointer;transition:transform .12s}
+.plbig:active{transform:scale(.95)}
+.plshuf{width:42px;height:42px;border:1.5px solid var(--bd);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--hint);cursor:pointer}
+.plshuf:active{background:var(--sf)}
+
+/* ── NEW PL BTN ── */
+.newpl{display:flex;align-items:center;gap:12px;padding:10px 18px;cursor:pointer;color:var(--G);font-size:13px;font-weight:600;transition:background .1s}
+.newpl:active{background:var(--sf)}
+.npi{width:42px;height:42px;border-radius:9px;background:var(--Gd);border:1px dashed rgba(29,185,84,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:40px 24px;color:var(--hint)}
+.empty-i{font-size:46px;margin-bottom:10px}
+.empty-h{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.empty-s{font-size:12px;line-height:1.6}
+
+/* ── SPINNER ── */
+.spin{display:inline-block;width:16px;height:16px;border:2px solid var(--bd);border-top-color:var(--G);border-radius:50%;animation:spi .6s linear infinite}
+@keyframes spi{to{transform:rotate(360deg)}}
+.spin-l{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spi .6s linear infinite}
+
+/* ── MINI PLAYER ── */
+.mp{position:fixed;bottom:calc(var(--NH)+var(--SB));left:0;right:0;height:var(--PH);background:rgba(14,14,20,.97);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border-top:1px solid var(--bd);z-index:90;display:flex;align-items:center;padding:0 14px;gap:10px;cursor:pointer}
+.mpA{width:46px;height:46px;border-radius:9px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;transition:box-shadow .4s}
+.mpA.pulse{box-shadow:0 0 0 4px rgba(29,185,84,.25)}
+.mpI{flex:1;min-width:0}
+.mpT{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpS{font-size:11px;color:var(--hint);margin-top:1px}
+.mpc{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.mpb{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--hint);cursor:pointer}
+.mpb:active{background:var(--sf);transform:scale(.9)}
+.mpb.liked{color:var(--G)}
+.mpPB{width:40px;height:40px;background:var(--text);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--bg);cursor:pointer;transition:transform .12s}
+.mpPB:active{transform:scale(.9)}
+.mpProg{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--sf);cursor:pointer}
+.mpFill{height:100%;background:var(--G);width:0%;transition:width .3s linear}
+
+/* Loading stripe */
+.mpLoad{position:absolute;bottom:0;left:-100%;right:100%;height:2px;background:linear-gradient(90deg,transparent,var(--G),transparent);animation:none}
+.mpLoad.on{animation:stripe 1.2s ease-in-out infinite}
+@keyframes stripe{0%{left:-60%;right:100%}100%{left:100%;right:-60%}}
+
+/* ── BOTTOM NAV ── */
+.bn{position:fixed;bottom:0;left:0;right:0;height:calc(var(--NH)+var(--SB));background:rgba(11,11,17,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--bd);z-index:100;display:flex;padding-bottom:var(--SB)}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:7px 0;cursor:pointer;color:var(--hint);font-size:10px;font-weight:700;transition:color .15s}
+.bni.active{color:var(--G)}
+.bni svg{transition:transform .15s}
+.bni.active svg{transform:scale(1.1)}
+
+/* ── FULL PLAYER ── */
+.fpl{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,.72,0,1)}
+.fpl.open{transform:none}
+.fdrag{width:36px;height:5px;background:rgba(255,255,255,.15);border-radius:3px;margin:14px auto 0;flex-shrink:0;cursor:pointer}
+.ftop{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 0;flex-shrink:0}
+.farr{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--hint);cursor:pointer;border-radius:50%}
+.farr:active{background:var(--sf)}
+.fctx{text-align:center}
+.fctxL{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--hint)}
+.fctxN{font-size:12px;font-weight:700;margin-top:2px}
+.fdots{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--hint);cursor:pointer;border-radius:50%}
+.fdots:active{background:var(--sf)}
+
+.fartW{flex:1;display:flex;align-items:center;justify-content:center;padding:16px 32px 4px;min-height:0}
+.fart{width:100%;max-width:min(300px,calc(100vw - 64px));aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,var(--bg2),#080810);display:flex;align-items:center;justify-content:center;font-size:min(86px,21vw);box-shadow:0 24px 70px rgba(0,0,0,.7);transition:transform .3s;flex-shrink:0;position:relative;overflow:hidden}
+.fart::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(29,185,84,.1),transparent 55%);pointer-events:none;border-radius:18px}
+.fart.big{transform:scale(1.04)}
+
+.fiR{display:flex;align-items:center;justify-content:space-between;padding:14px 22px 0;flex-shrink:0}
+.fiN{font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fiA{font-size:13px;color:var(--hint);margin-top:3px}
+.fhrt{width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--hint);border-radius:50%;flex-shrink:0}
+.fhrt:active{background:var(--sf);transform:scale(.9)}
+.fhrt.liked{color:var(--G)}
+
+.fpw{padding:16px 22px 0;flex-shrink:0}
+.fbar{height:4px;background:rgba(255,255,255,.12);border-radius:2px;cursor:pointer;touch-action:none;position:relative}
+.fbf{height:100%;background:var(--text);border-radius:2px;width:0%;transition:width .3s linear;position:relative}
+.fbf::after{content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:12px;height:12px;background:var(--text);border-radius:50%}
+.ftt{display:flex;justify-content:space-between;margin-top:7px;font-size:10px;color:var(--hint);font-weight:700}
+
+.fcc{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;flex-shrink:0}
+.fc{width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--hint);border-radius:50%}
+.fc:active{background:var(--sf);color:var(--text);transform:scale(.9)}
+.fc.on{color:var(--G)}
+.fplay{width:62px;height:62px;background:var(--text);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bg);box-shadow:0 8px 32px rgba(0,0,0,.35);transition:transform .12s}
+.fplay:active{transform:scale(.92)}
+
+.fvol{display:flex;align-items:center;gap:11px;padding:0 22px 20px;flex-shrink:0}
+.fvol svg{color:var(--hint);flex-shrink:0}
+.vt{flex:1;height:4px;background:rgba(255,255,255,.12);border-radius:2px;cursor:pointer;touch-action:none}
+.vf{height:100%;background:rgba(255,255,255,.4);border-radius:2px;width:70%}
+
+/* ── POPOVER ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:250;opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.open{opacity:1;pointer-events:all}
+.pop{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-radius:18px 18px 0 0;padding:0 0 calc(20px + var(--SB));transform:translateY(100%);transition:transform .32s cubic-bezier(.32,.72,0,1);z-index:260}
+.pop.open{transform:none}
+.pdrag{width:36px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:12px auto 14px}
+.ptrack{display:flex;align-items:center;gap:11px;padding:0 18px 14px;border-bottom:1px solid var(--bd);margin-bottom:6px}
+.part{width:46px;height:46px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ptN{font-size:14px;font-weight:600}
+.ptA{font-size:12px;color:var(--hint);margin-top:2px}
+.pact{display:flex;align-items:center;gap:14px;padding:13px 18px;cursor:pointer;font-size:14px;font-weight:500;transition:background .1s}
+.pact:active{background:var(--sf)}
+.pact svg{color:var(--hint)}
+.pact.red{color:#ff4d4d}.pact.red svg{color:#ff4d4d}
+
+/* ── MODAL ── */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:flex-end}
+.mov.open{opacity:1;pointer-events:all}
+.modal{background:var(--bg2);border-radius:18px 18px 0 0;padding:0 0 calc(24px + var(--SB));width:100%;transform:translateY(100%);transition:transform .32s cubic-bezier(.32,.72,0,1)}
+.mov.open .modal{transform:none}
+.mhead{display:flex;align-items:center;justify-content:space-between;padding:16px 18px}
+.mtitle{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:700}
+.mclose{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--hint);cursor:pointer;border-radius:50%;background:var(--sf)}
+.mbody{padding:0 18px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.plsel{display:flex;align-items:center;gap:12px;padding:10px 0;cursor:pointer;border-bottom:1px solid var(--bd)}
+.plsel:active{opacity:.7}
+.plsel-a{width:42px;height:42px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.plsel-n{font-size:13px;font-weight:600}
+.plsel-c{font-size:11px;color:var(--hint);margin-top:2px}
+.mi{background:var(--sf);border:1.5px solid var(--bd);border-radius:10px;padding:11px 14px;width:100%;font:600 14px 'Nunito',sans-serif;color:var(--text);outline:none;-webkit-user-select:text;user-select:text;margin-top:10px}
+.mi:focus{border-color:var(--G)}
+.mi::placeholder{color:var(--hint)}
+.mbtn{width:100%;padding:13px;background:var(--G);color:#000;font:700 14px 'Nunito',sans-serif;border-radius:10px;border:none;cursor:pointer;margin-top:10px;transition:opacity .15s}
+.mbtn:active{opacity:.8}
+.divider{height:1px;background:var(--bd);margin:6px 18px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(var(--PH)+var(--NH)+var(--SB)+14px);left:50%;transform:translateX(-50%) translateY(8px);background:rgba(20,20,30,.97);backdrop-filter:blur(12px);color:var(--text);padding:9px 16px;border-radius:50px;font-size:12px;font-weight:700;z-index:400;opacity:0;transition:all .25s;white-space:nowrap;border:1px solid var(--bd);pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="pages">
+
+    <!-- ══ HOME ══ -->
+    <div class="page active" id="page-home">
+      <div class="ph">
+        <div class="head1" id="greeting">Добрый вечер 🎵</div>
+        <div class="sub1" id="gsub">Что слушаем?</div>
+      </div>
+
+      <div class="hero" onclick="heroPlay()">
+        <div class="hero-tag">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><polygon points="0,0 8,4 0,8"/></svg>
+          Медиатека
+        </div>
+        <div class="hero-h">Твой плеер</div>
+        <div class="hero-s" id="hero-s">Найди музыку во вкладке Поиск →</div>
+        <div class="hero-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M5 3l14 9-14 9V3z"/></svg>
+        </div>
+      </div>
+
+      <div class="sec" id="recent-sec" style="display:none">
+        <div class="sr"><div class="stitle">Недавние</div><div class="sall" onclick="showPage('library')">Все</div></div>
+        <div class="grid2" id="home-recent"></div>
+      </div>
+
+      <div class="sec" style="margin-bottom:8px">
+        <div class="sr"><div class="stitle">Все треки</div><div class="sall" id="home-all"></div></div>
+        <div class="tlist" id="home-tracks">
+          <div class="empty">
+            <div class="empty-i">🎵</div>
+            <div class="empty-h">Медиатека пуста</div>
+            <div class="empty-s">Найди треки во вкладке Поиск<br/>и добавь их сюда</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SEARCH ══ -->
+    <div class="page" id="page-search">
+      <div class="ph"><div class="head1">Поиск</div></div>
+
+      <div class="sbox">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--hint);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search-input" type="search" inputmode="search" placeholder="Исполнитель, трек…"
+               oninput="onSearchInput(this.value)" autocomplete="off" autocorrect="off"/>
+        <div class="sbox-clear" id="sclear" onclick="clearSearch()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+        </div>
+      </div>
+
+      <!-- Source filter tabs -->
+      <div class="src-tabs" id="src-tabs" style="display:none">
+        <div class="stab active" onclick="filterSrc('all',this)">Все</div>
+        <div class="stab" onclick="filterSrc('tg',this)">📡 Telegram</div>
+        <div class="stab" onclick="filterSrc('vk',this)">🎵 VK</div>
+        <div class="stab" onclick="filterSrc('sc',this)">☁️ SoundCloud</div>
+      </div>
+
+      <!-- Results / genres -->
+      <div id="search-results">
+        <div style="height:16px"></div>
+        <div class="sec"><div class="sr"><div class="stitle">Жанры</div></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px">
+          <div style="background:linear-gradient(135deg,#1db954,#007a30);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('pop')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">Поп</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">🎵</em>
+          </div>
+          <div style="background:linear-gradient(135deg,#e13300,#7c1900);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('hip hop')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">Хип-хоп</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">🎤</em>
+          </div>
+          <div style="background:linear-gradient(135deg,#1e3264,#0a1035);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('electronic')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">Электронная</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">⚡</em>
+          </div>
+          <div style="background:linear-gradient(135deg,#8d67ab,#4a2f6b);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('r&b')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">R&amp;B</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">✨</em>
+          </div>
+          <div style="background:linear-gradient(135deg,#ba5d07,#6b3504);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('rock')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">Рок</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">🎸</em>
+          </div>
+          <div style="background:linear-gradient(135deg,#006450,#001e18);border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('jazz')" class="genre-card">
+            <span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">Джаз</span>
+            <em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">🎷</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ LIBRARY ══ -->
+    <div class="page" id="page-library">
+      <div class="ph"><div class="head1">Медиатека</div><div class="sub1">Твои сохранённые треки</div></div>
+      <div style="height:14px"></div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0 18px;margin-bottom:6px">
+        <div class="stitle">Плейлисты</div>
+        <div class="sall" onclick="refreshLib()">↻ Обновить</div>
+      </div>
+      <div class="llist" id="pl-list"></div>
+
+      <div class="newpl" onclick="openNewPlaylist()">
+        <div class="npi">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--G)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        Создать плейлист
+      </div>
+
+      <div class="divider"></div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0 18px;margin-bottom:4px">
+        <div class="stitle">Все треки</div>
+        <div class="sall" id="lib-cnt"></div>
+      </div>
+      <div class="tlist" id="lib-tracks"></div>
+    </div>
+
+    <!-- ══ PLAYLIST VIEW ══ -->
+    <div class="page" id="page-playlist">
+      <div class="plh">
+        <div class="plc" id="plCov">🎵</div>
+        <div>
+          <div class="pln" id="plN">Плейлист</div>
+          <div class="plm" id="plM">0 треков</div>
+          <div class="pla">
+            <div class="plbig" onclick="playPlaylist(false)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+              Слушать
+            </div>
+            <div class="plshuf" onclick="playPlaylist(true)" title="Перемешать">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tlist" id="pl-tracks"></div>
+    </div>
+
+  </div><!-- /pages -->
+
+  <!-- MINI PLAYER -->
+  <div class="mp" id="mplayer" onclick="openFull()">
+    <div class="mpA" id="mpA">🎵</div>
+    <div class="mpI">
+      <div class="mpT" id="mpT">Нет трека</div>
+      <div class="mpS" id="mpS">Wavefy</div>
+    </div>
+    <div class="mpc" onclick="event.stopPropagation()">
+      <div class="mpb" id="mpLike" onclick="toggleLike();haptic('light')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="mpb" onclick="prevTrack();haptic('light')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+      </div>
+      <div class="mpPB" id="mpPB" onclick="togglePlay();haptic('medium')">
+        <svg id="mpPI" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+      </div>
+      <div class="mpb" onclick="nextTrack();haptic('light')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+      </div>
+    </div>
+    <div class="mpProg" id="mpProg" onclick="seekMini(event)">
+      <div class="mpFill" id="mpFill"></div>
+      <div class="mpLoad" id="mpLoad"></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bn">
+    <div class="bni active" id="bni-home" onclick="nav('home')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L4 9v12h5v-7h6v7h5V9z"/></svg>
+      Главная
+    </div>
+    <div class="bni" id="bni-search" onclick="nav('search')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Поиск
+    </div>
+    <div class="bni" id="bni-library" onclick="nav('library')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      Медиатека
+    </div>
+  </div>
+</div>
+
+<!-- FULL PLAYER -->
+<div class="fpl" id="fpl">
+  <div class="fdrag" onclick="closeFull()"></div>
+  <div class="ftop">
+    <div class="farr" onclick="closeFull();haptic('light')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="fctx">
+      <div class="fctxL">Воспроизводится из</div>
+      <div class="fctxN" id="fctxN">Медиатека</div>
+    </div>
+    <div class="fdots" onclick="openPopover();haptic('light')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+    </div>
+  </div>
+  <div class="fartW"><div class="fart" id="fart">🎵</div></div>
+  <div class="fiR">
+    <div style="min-width:0;flex:1">
+      <div class="fiN" id="fiN">—</div>
+      <div class="fiA" id="fiA">—</div>
+    </div>
+    <div class="fhrt" id="fhrt" onclick="toggleLike();haptic('medium')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+  </div>
+  <div class="fpw">
+    <div class="fbar" id="fbar"><div class="fbf" id="fbf"></div></div>
+    <div class="ftt"><span id="fcur">0:00</span><span id="fdur">0:00</span></div>
+  </div>
+  <div class="fcc">
+    <div class="fc" id="fcShuf" onclick="toggleShuffle();haptic('light')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+    </div>
+    <div class="fc" style="width:52px;height:52px" onclick="prevTrack();haptic('medium')">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+    </div>
+    <div class="fplay" id="fplay" onclick="togglePlay();haptic('heavy')">
+      <svg id="fPI" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+    </div>
+    <div class="fc" style="width:52px;height:52px" onclick="nextTrack();haptic('medium')">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+    </div>
+    <div class="fc" id="fcRep" onclick="cycleRepeat();haptic('light')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+    </div>
+  </div>
+  <div class="fvol">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>
+    <div class="vt" id="vt"><div class="vf" id="vf"></div></div>
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+  </div>
+</div>
+
+<!-- POPOVER -->
+<div class="ov" id="pov" onclick="closePopover()"></div>
+<div class="pop" id="pop">
+  <div class="pdrag"></div>
+  <div class="ptrack">
+    <div class="part" id="pArt">🎵</div>
+    <div><div class="ptN" id="pTN">—</div><div class="ptA" id="pTA">—</div></div>
+  </div>
+  <div class="pact" onclick="toggleLike();closePopover();haptic('medium')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    В любимые
+  </div>
+  <div class="pact" onclick="openAddToPlaylist();haptic('light')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1"/><circle cx="3" cy="12" r="1"/><circle cx="3" cy="18" r="1"/></svg>
+    Добавить в плейлист
+  </div>
+  <div class="pact" onclick="shareTrack();haptic('light')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+    Поделиться
+  </div>
+  <div class="pact red" onclick="deleteTrack();haptic('medium')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+    Удалить из медиатеки
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="mov" id="mov" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="mhead">
+      <div class="mtitle" id="mtitle">Плейлист</div>
+      <div class="mclose" onclick="closeModal()">✕</div>
+    </div>
+    <div class="mbody" id="mbody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+
+/* ══════════════════════════════════════
+   CONFIG — замени на свой URL бэкенда
+══════════════════════════════════════ */
+const API = 'https://amplix-production.up.railway.app';
+
+/* ══════════════════════════════════════
+   TELEGRAM SDK
+══════════════════════════════════════ */
+const tg = window.Telegram?.WebApp;
+if(tg){
+  tg.ready(); tg.expand();
+  try{ tg.disableVerticalSwipes(); }catch(e){}
+  if(tg.setHeaderColor)    tg.setHeaderColor('secondary_bg_color');
+  if(tg.setBackgroundColor)tg.setBackgroundColor('bg_color');
+  if(tg.setBottomBarColor) tg.setBottomBarColor('secondary_bg_color');
+}
+const UID  = tg?.initDataUnsafe?.user?.id || null;
+const USER = tg?.initDataUnsafe?.user || null;
+
+const apiHeaders = () => ({
+  'Content-Type': 'application/json',
+  'X-Telegram-User-Id': String(UID || 0),
+  'X-Telegram-Init-Data': tg?.initData || '',
+});
+
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+let library    = [];   // треки пользователя (из бэкенда)
+let playlists  = [];   // плейлисты пользователя
+let queue      = [];   // [file_id, ...]
+let qIdx       = 0;
+let curFid     = null; // текущий file_id
+let popFid     = null; // file_id в поповере
+let curPlId    = null;
+let shuffle    = false;
+let repeat     = 'none';
+let volume     = 0.8;
+
+// Search state
+let searchResults  = [];
+let filteredResults= [];
+let currentSrcFilter='all';
+let searchTimer    = null;
+
+/* ══════════════════════════════════════
+   AUDIO ENGINE
+══════════════════════════════════════ */
+const aud = new Audio();
+aud.preload = 'none';
+aud.volume  = volume;
+
+aud.addEventListener('timeupdate', () => {
+  if(!aud.duration || isNaN(aud.duration)) return;
+  const p = aud.currentTime / aud.duration * 100;
+  $('mpFill').style.width = p + '%';
+  $('fbf').style.width    = p + '%';
+  $('fcur').textContent   = fmt(aud.currentTime);
+});
+aud.addEventListener('loadedmetadata', () => {
+  $('fdur').textContent = fmt(aud.duration || 0);
+  stopLoad();
+});
+aud.addEventListener('ended', () => {
+  if(repeat === 'one'){ aud.currentTime=0; aud.play(); return; }
+  nextTrack();
+});
+aud.addEventListener('error',   () => { stopLoad(); toast('⚠️ Ошибка воспроизведения'); });
+aud.addEventListener('play',    () => { updateIcons(); $('fart').classList.add('big'); $('mpA').classList.add('pulse'); });
+aud.addEventListener('pause',   () => { updateIcons(); $('fart').classList.remove('big'); $('mpA').classList.remove('pulse'); });
+aud.addEventListener('waiting', () => startLoad());
+aud.addEventListener('canplay', () => stopLoad());
+
+function startLoad(){ $('mpLoad').classList.add('on'); }
+function stopLoad(){  $('mpLoad').classList.remove('on'); }
+
+/* ══════════════════════════════════════
+   API CALLS
+══════════════════════════════════════ */
+async function api(method, path, body) {
+  try {
+    const r = await fetch(API + path, {
+      method,
+      headers: apiHeaders(),
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if(!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e) {
+    console.warn('API:', method, path, e.message);
+    return null;
+  }
+}
+
+async function searchAPI(q) {
+  if(!q.trim()) return [];
+  const data = await api('GET', `/api/search?q=${encodeURIComponent(q)}&limit=40`);
+  return data?.results || [];
+}
+
+async function refreshLib() {
+  const data = await api('GET', '/api/library');
+  if(data) {
+    library   = data.tracks    || [];
+    playlists = data.playlists || [];
+    renderAll();
+  }
+}
+
+async function saveToLib(result) {
+  const r = await api('POST', '/api/library/tracks', result);
+  if(r?.ok && !r.duplicate) {
+    library.push(r.track);
+    renderAll();
+    return r.track;
+  } else if(r?.duplicate) {
+    toast('Уже в медиатеке');
+  }
+  return null;
+}
+
+function streamUrl(fileId) {
+  // Стрим через наш бэкенд (он редиректит на Telegram CDN)
+  return `${API}/api/stream/${encodeURIComponent(fileId)}?uid=${UID||0}`;
+}
+
+/* ══════════════════════════════════════
+   SEARCH
+══════════════════════════════════════ */
+let _searchId = 0;
+
+function onSearchInput(val) {
+  $('sclear').classList.toggle('show', !!val.trim());
+  clearTimeout(searchTimer);
+  if(!val.trim()) { clearSearch(); return; }
+  searchTimer = setTimeout(() => doSearch(val), 500); // debounce 500ms
+}
+
+async function doSearch(q) {
+  const id = ++_searchId;
+  showSearchLoading(q);
+  
+  const results = await searchAPI(q);
+  if(id !== _searchId) return; // отменено новым поиском
+  
+  searchResults = results;
+  currentSrcFilter = 'all';
+  filterSrc('all', document.querySelector('.stab'));
+  
+  $('src-tabs').style.display = results.length ? 'flex' : 'none';
+  renderSearchResults(results);
+}
+
+function filterSrc(src, el) {
+  currentSrcFilter = src;
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+  el?.classList.add('active');
+  
+  let filtered = searchResults;
+  if(src === 'tg') filtered = searchResults.filter(r => r.source?.includes('lybot') || r.source?.includes('Grandma'));
+  if(src === 'vk') filtered = searchResults.filter(r => r.source?.includes('vkm'));
+  if(src === 'sc') filtered = searchResults.filter(r => r.source?.includes('scdl'));
+  
+  filteredResults = filtered;
+  renderSearchResults(filtered);
+}
+
+function showSearchLoading(q) {
+  $('search-results').innerHTML = `
+    <div class="empty" style="padding:32px 24px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px">
+        <div class="spin"></div>
+        <span style="font-size:14px;font-weight:600">Ищем «${esc(q)}»</span>
+      </div>
+      <div class="empty-s">Telegram базы · VK · SoundCloud</div>
+    </div>`;
+  $('src-tabs').style.display = 'none';
+}
+
+function renderSearchResults(results) {
+  if(!results.length) {
+    $('search-results').innerHTML = `
+      <div class="empty">
+        <div class="empty-i">🔍</div>
+        <div class="empty-h">Ничего не найдено</div>
+        <div class="empty-s">Попробуй другой запрос</div>
+      </div>`;
+    return;
+  }
+
+  const libIds = new Set(library.map(t => t.file_id));
+
+  $('search-results').innerHTML =
+    `<div style="padding:10px 18px 4px;font-size:11px;color:var(--hint);font-weight:700">
+       Найдено: ${results.length} треков
+     </div>` +
+    results.map((r, i) => {
+      const inLib = libIds.has(r.file_id);
+      const srcCls = srcClass(r.source);
+      const srcLabel = srcLabel_(r.source);
+      return `
+      <div class="result-row ${inLib ? 'in-lib' : ''}" id="rrow-${i}" onclick="playSearchResult(${i})">
+        <div class="r-art">
+          <span>${r.emoji || '🎵'}</span>
+          <div class="r-spin"><div class="spin-l"></div></div>
+        </div>
+        <div class="r-meta">
+          <div class="r-title">${esc(r.title)}</div>
+          <div class="r-artist">${esc(r.artist)}</div>
+          <span class="r-source ${srcCls}">${srcLabel}</span>
+        </div>
+        <div class="r-dur">${r.duration_str || ''}</div>
+        <div class="r-add ${inLib ? 'added' : ''}" onclick="event.stopPropagation();toggleSaveResult(${i})" title="${inLib ? 'В медиатеке' : 'Добавить'}">
+          ${inLib
+            ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`
+            : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`
+          }
+        </div>
+      </div>`;
+    }).join('');
+}
+
+function srcClass(src) {
+  if(!src) return 'src-tg';
+  if(src.includes('vkm')) return 'src-vk';
+  if(src.includes('scdl')) return 'src-sc';
+  return 'src-tg';
+}
+function srcLabel_(src) {
+  if(!src) return '📡 Telegram';
+  if(src.includes('vkm')) return '🎵 VK';
+  if(src.includes('scdl')) return '☁️ SoundCloud';
+  return '📡 Telegram';
+}
+
+function clearSearch() {
+  $('search-input').value = '';
+  $('sclear').classList.remove('show');
+  $('src-tabs').style.display = 'none';
+  searchResults = [];
+  filteredResults = [];
+  $('search-results').innerHTML = `
+    <div style="height:16px"></div>
+    <div class="sec"><div class="sr"><div class="stitle">Жанры</div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px">
+      ${['Поп:pop:#1db954:#007a30:🎵','Хип-хоп:hip hop:#e13300:#7c1900:🎤','Электронная:electronic:#1e3264:#0a1035:⚡','R&B:r&b:#8d67ab:#4a2f6b:✨','Рок:rock:#ba5d07:#6b3504:🎸','Джаз:jazz:#006450:#001e18:🎷']
+        .map(g => {
+          const [n,q,c1,c2,e] = g.split(':');
+          return `<div style="background:linear-gradient(135deg,${c1},${c2});border-radius:var(--Rs);padding:16px 12px;cursor:pointer;position:relative;overflow:hidden;min-height:68px;display:flex;align-items:flex-end;transition:transform .15s" onclick="searchByGenre('${q}')"><span style="font-family:'Unbounded',sans-serif;font-size:12px;font-weight:700;position:relative;z-index:1">${n}</span><em style="position:absolute;right:-4px;top:-8px;font-size:48px;opacity:.35;transform:rotate(12deg);font-style:normal">${e}</em></div>`;
+        }).join('')}
+    </div>`;
+}
+
+function searchByGenre(q) {
+  $('search-input').value = q;
+  $('sclear').classList.add('show');
+  doSearch(q);
+  nav('search');
+}
+
+/* ══════════════════════════════════════
+   PLAYBACK
+══════════════════════════════════════ */
+function playFromLib(fileId) {
+  const t = library.find(x => x.file_id === fileId);
+  if(!t) return;
+  curFid = fileId;
+  buildQueue(fileId, library.map(x => x.file_id));
+  startAudio(streamUrl(fileId));
+  updateMini(t); updateFull(t); updateLikes();
+  renderAll(); haptic('medium');
+}
+
+async function playSearchResult(idx) {
+  const list = filteredResults.length ? filteredResults : searchResults;
+  const r = list[idx]; if(!r) return;
+
+  // Mark loading
+  const row = document.getElementById('rrow-' + idx);
+  if(row) row.classList.add('loading-play');
+
+  curFid = r.file_id;
+  buildQueue(r.file_id, list.map(x => x.file_id));
+  startAudio(streamUrl(r.file_id));
+
+  // Fake track obj for UI
+  const fakeTrack = {
+    file_id:      r.file_id,
+    title:        r.title,
+    artist:       r.artist,
+    duration_str: r.duration_str,
+    emoji:        r.emoji || '🎵',
+    liked:        false,
+  };
+  updateMini(fakeTrack); updateFull(fakeTrack);
+
+  if(row) setTimeout(() => row.classList.remove('loading-play'), 2000);
+  haptic('medium');
+}
+
+function startAudio(src) {
+  startLoad();
+  aud.src = src;
+  aud.load();
+  aud.play().catch(() => { stopLoad(); toast('⚠️ Нет доступа к треку'); });
+}
+
+function buildQueue(fromId, ids) {
+  queue = shuffle ? shuffArr([...ids]) : [...ids];
+  if(!queue.includes(fromId)) queue.unshift(fromId);
+  qIdx = queue.indexOf(fromId);
+}
+
+function heroPlay() {
+  if(library.length) { buildQueue(library[0].file_id, library.map(x=>x.file_id)); playFromLib(queue[0]); }
+  else { nav('search'); toast('Найди треки в поиске'); }
+}
+
+function togglePlay() {
+  if(!curFid) { heroPlay(); return; }
+  if(aud.paused) aud.play().catch(()=>{});
+  else aud.pause();
+}
+
+function prevTrack() {
+  if(aud.currentTime > 3) { aud.currentTime = 0; return; }
+  qIdx = (qIdx - 1 + queue.length) % queue.length;
+  const fid = queue[qIdx];
+  const t = library.find(x => x.file_id === fid);
+  if(t) { curFid=fid; startAudio(streamUrl(fid)); updateMini(t); updateFull(t); updateLikes(); }
+}
+
+function nextTrack() {
+  if(repeat === 'all') qIdx = (qIdx+1) % queue.length;
+  else qIdx = Math.min(qIdx+1, queue.length-1);
+  const fid = queue[qIdx];
+  const t = library.find(x => x.file_id === fid);
+  if(t) { curFid=fid; startAudio(streamUrl(fid)); updateMini(t); updateFull(t); updateLikes(); }
+}
+
+function playPlaylist(doShuf=false) {
+  const pl = playlists.find(p => p.id === curPlId);
+  if(!pl || !pl.track_ids?.length) { toast('Плейлист пуст'); return; }
+  const ids = doShuf ? shuffArr([...pl.track_ids]) : [...pl.track_ids];
+  queue = ids; qIdx = 0; shuffle = doShuf;
+  $('fcShuf').classList.toggle('on', shuffle);
+  const t = library.find(x => x.id === ids[0]);
+  if(t) { curFid=t.file_id; startAudio(streamUrl(t.file_id)); updateMini(t); updateFull(t); updateLikes(); haptic('medium'); }
+}
+
+/* ══════════════════════════════════════
+   SAVE / REMOVE TRACKS
+══════════════════════════════════════ */
+async function toggleSaveResult(idx) {
+  const list = filteredResults.length ? filteredResults : searchResults;
+  const r = list[idx]; if(!r) return;
+
+  const existing = library.find(t => t.file_id === r.file_id);
+  if(existing) {
+    toast('Уже в медиатеке 💚');
+    return;
+  }
+
+  const saved = await saveToLib(r);
+  if(saved) {
+    toast('✅ Добавлено в медиатеку');
+    haptic('success');
+    // Update UI
+    const row = document.getElementById('rrow-' + idx);
+    if(row) {
+      row.classList.add('in-lib');
+      const btn = row.querySelector('.r-add');
+      if(btn) {
+        btn.classList.add('added');
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+      }
+    }
+  }
+}
+
+async function deleteTrack() {
+  const fid = popFid || curFid;
+  const t = library.find(x => x.file_id === fid);
+  if(!t) { closePopover(); return; }
+  await api('DELETE', `/api/library/tracks/${t.id}`);
+  library = library.filter(x => x.file_id !== fid);
+  playlists.forEach(pl => { pl.track_ids = pl.track_ids?.filter(id => id !== t.id) || []; });
+  if(curFid === fid) { aud.pause(); curFid = null; }
+  closePopover(); closeFull();
+  renderAll(); toast('🗑 Удалено'); haptic('medium');
+}
+
+/* ══════════════════════════════════════
+   LIKE
+══════════════════════════════════════ */
+function toggleLike() {
+  const t = getCurTrack(); if(!t) return;
+  t.liked = !t.liked;
+  api('PATCH', `/api/library/tracks/${t.id}`, { liked: t.liked });
+  updateLikes(); renderAll();
+  toast(t.liked ? '💚 В любимые' : '🩶 Убрано');
+}
+
+function getCurTrack() { return library.find(x => x.file_id === curFid) || null; }
+
+/* ══════════════════════════════════════
+   PLAYLISTS
+══════════════════════════════════════ */
+function openNewPlaylist() {
+  haptic('light');
+  $('mtitle').textContent = 'Новый плейлист';
+  const EMOJIS = ['🎵','🎶','🎸','🎹','🎺','🎤','🌊','⚡','🌙','✨','🔥','💙','🌹'];
+  const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+  $('mbody').innerHTML = `
+    <input class="mi" id="pl-inp" type="text" placeholder="Название плейлиста" maxlength="40"/>
+    <button class="mbtn" onclick="createPlaylist('${emoji}')">Создать</button>
+    <div style="height:10px"></div>`;
+  openModal();
+  setTimeout(() => $('pl-inp')?.focus(), 380);
+}
+
+async function createPlaylist(emoji) {
+  const name = $('pl-inp').value.trim();
+  if(!name) { toast('Введи название'); return; }
+  const r = await api('POST', '/api/library/playlists', { name, emoji });
+  if(r?.ok) {
+    playlists.push(r.playlist);
+    renderLibrary();
+    closeModal(); haptic('success');
+    toast(`✅ Плейлист «${name}» создан`);
+  }
+}
+
+function openAddToPlaylist() {
+  closePopover();
+  $('mtitle').textContent = 'Добавить в плейлист';
+  $('mbody').innerHTML = playlists.length
+    ? playlists.map(pl => `
+        <div class="plsel" onclick="addToPlaylist(${pl.id})">
+          <div class="plsel-a">${pl.emoji}</div>
+          <div>
+            <div class="plsel-n">${esc(pl.name)}</div>
+            <div class="plsel-c">${pl.track_ids?.length||0} треков</div>
+          </div>
+        </div>`).join('') + '<div style="height:10px"></div>'
+    : `<div style="text-align:center;padding:20px 0;color:var(--hint);font-size:13px">Нет плейлистов</div>
+       <button class="mbtn" onclick="closeModal();openNewPlaylist()">Создать плейлист</button>
+       <div style="height:10px"></div>`;
+  openModal();
+}
+
+async function addToPlaylist(plId) {
+  const pl = playlists.find(p => p.id === plId); if(!pl) return;
+  const fid = popFid || curFid;
+  const t = library.find(x => x.file_id === fid); if(!t) return;
+  if(pl.track_ids?.includes(t.id)) { toast('Уже в плейлисте'); closeModal(); return; }
+  await api('PATCH', `/api/library/playlists/${plId}/tracks`, { track_id: t.id, action: 'add' });
+  pl.track_ids = [...(pl.track_ids||[]), t.id];
+  closeModal(); haptic('success');
+  toast(`✅ Добавлено в «${pl.name}»`);
+  renderLibrary();
+}
+
+function openPlaylist(plId) {
+  curPlId = plId;
+  const pl = playlists.find(p => p.id === plId); if(!pl) return;
+  $('plCov').textContent = pl.emoji;
+  $('plN').textContent   = pl.name;
+  $('fctxN').textContent = pl.name;
+  renderPlaylistView(pl);
+  showPage('playlist'); haptic('light');
+}
+
+function openLiked() {
+  curPlId = 'liked';
+  const liked = library.filter(t => t.liked);
+  $('plCov').textContent = '💚';
+  $('plN').textContent   = 'Любимые';
+  $('plM').textContent   = `${liked.length} треков`;
+  $('fctxN').textContent = 'Любимые';
+  $('pl-tracks').innerHTML = liked.length
+    ? liked.map((t,i) => tRowHTML(t,i+1)).join('')
+    : `<div class="empty"><div class="empty-i">💚</div><div class="empty-h">Нет любимых</div><div class="empty-s">Лайкни трек — он появится здесь</div></div>`;
+  showPage('playlist'); haptic('light');
+}
+
+function renderPlaylistView(pl) {
+  const trs = (pl.track_ids||[]).map(id => library.find(t=>t.id===id)).filter(Boolean);
+  $('plM').textContent = `${trs.length} треков`;
+  $('pl-tracks').innerHTML = trs.length
+    ? trs.map((t,i) => tRowHTML(t,i+1)).join('')
+    : `<div class="empty"><div class="empty-i">${pl.emoji}</div><div class="empty-h">Плейлист пуст</div><div class="empty-s">Найди треки в Поиске и добавь сюда</div></div>`;
+}
+
+/* ══════════════════════════════════════
+   RENDER
+══════════════════════════════════════ */
+function renderAll() {
+  renderHome();
+  renderLibrary();
+  if(curPlId && curPlId !== 'liked') {
+    const pl = playlists.find(p => p.id === curPlId);
+    if(pl) renderPlaylistView(pl);
+  }
+}
+
+function tRowHTML(t, num) {
+  const isCur = t.file_id === curFid && !aud.paused;
+  return `
+  <div class="trow ${isCur?'playing':''}" onclick="playFromLib('${esc(t.file_id)}')">
+    <div class="tnum">${num}</div>
+    <div class="eq"><div class="eqb"></div><div class="eqb"></div><div class="eqb"></div></div>
+    <div class="tart">${t.emoji||'🎵'}</div>
+    <div class="tmeta">
+      <div class="tn">${esc(t.title)}</div>
+      <div class="ta">${esc(t.artist)}</div>
+    </div>
+    <div class="tdur">${t.duration_str||''}</div>
+    <div class="tmore" onclick="event.stopPropagation();openPopoverFor('${esc(t.file_id)}');haptic('light')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+    </div>
+  </div>`;
+}
+
+function renderHome() {
+  const el = $('home-tracks');
+  $('home-all').textContent = library.length ? `${library.length} треков` : '';
+
+  if(!library.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-i">🎵</div><div class="empty-h">Медиатека пуста</div><div class="empty-s">Найди треки во вкладке Поиск<br/>и добавь их сюда кнопкой +</div></div>`;
+    $('recent-sec').style.display = 'none';
+    $('hero-s').textContent = 'Найди музыку во вкладке Поиск →';
+    return;
+  }
+
+  $('hero-s').textContent = `${library.length} треков · Поехали!`;
+
+  // Recent
+  const recent = [...library].reverse().slice(0, 6);
+  if(recent.length >= 2) {
+    $('recent-sec').style.display = 'block';
+    $('home-recent').innerHTML = recent.map(t => `
+      <div class="mcard ${t.file_id===curFid&&!aud.paused?'playing':''}" onclick="playFromLib('${esc(t.file_id)}')">
+        <div class="mc-art">${t.emoji||'🎵'}</div>
+        <div><div class="mc-name">${esc(t.title)}</div><div class="mc-art2">${esc(t.artist)}</div></div>
+      </div>`).join('');
+  }
+
+  el.innerHTML = library.map((t,i) => tRowHTML(t, i+1)).join('');
+}
+
+function renderLibrary() {
+  // Playlists
+  const liked = library.filter(t => t.liked);
+  const allPl = [];
+  if(liked.length) allPl.push({id:'liked',name:'Любимые',emoji:'💚',cnt:liked.length,_liked:true});
+  allPl.push(...playlists.map(p => ({
+    id:p.id, name:p.name, emoji:p.emoji,
+    cnt:p.track_ids?.length||0
+  })));
+
+  $('pl-list').innerHTML = allPl.map(pl => `
+    <div class="litem" onclick="${pl._liked?'openLiked()':'openPlaylist('+pl.id+')'}">
+      <div class="la">${pl.emoji}<span class="lc">${pl.cnt}</span></div>
+      <div class="li"><div class="ln">${esc(pl.name)}</div><div class="lm">Плейлист · ${pl.cnt} треков</div></div>
+      <div class="lch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
+    </div>`).join('') || `<div style="padding:8px 18px;font-size:13px;color:var(--hint)">Нет плейлистов — создай первый!</div>`;
+
+  $('lib-cnt').textContent = library.length ? `${library.length} треков` : '';
+  $('lib-tracks').innerHTML = library.length
+    ? library.map((t,i) => tRowHTML(t,i+1)).join('')
+    : `<div class="empty"><div class="empty-i">📂</div><div class="empty-h">Медиатека пуста</div><div class="empty-s">Найди треки в Поиске и добавь сюда</div></div>`;
+}
+
+/* ══════════════════════════════════════
+   UI UPDATE
+══════════════════════════════════════ */
+function updateMini(t) {
+  $('mpA').textContent = t?.emoji || '🎵';
+  $('mpT').textContent = t?.title || 'Нет трека';
+  $('mpS').textContent = t?.artist || 'Wavefy';
+}
+function updateFull(t) {
+  $('fart').textContent = t?.emoji || '🎵';
+  $('fiN').textContent  = t?.title || '—';
+  $('fiA').textContent  = t?.artist || '—';
+  $('fdur').textContent = t?.duration_str || '0:00';
+}
+function updateIcons() {
+  const on = !aud.paused;
+  const p = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>`;
+  const pa= `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+  const pL= `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>`;
+  const paL=`<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+  $('mpPB').innerHTML = on ? pa : p;
+  $('fplay').innerHTML= on ? paL: pL;
+}
+function updateLikes() {
+  const t = getCurTrack();
+  const on = t?.liked || false;
+  const fill = on ? 'currentColor' : 'none';
+  const svg = sz => `<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+  $('mpLike').innerHTML = svg(18); $('mpLike').classList.toggle('liked',on);
+  $('fhrt').innerHTML   = svg(24); $('fhrt').classList.toggle('liked',on);
+}
+
+/* ══════════════════════════════════════
+   SHUFFLE / REPEAT
+══════════════════════════════════════ */
+function toggleShuffle() {
+  shuffle = !shuffle;
+  $('fcShuf').classList.toggle('on', shuffle);
+  if(curFid) buildQueue(curFid, library.map(x=>x.file_id));
+  toast(shuffle ? '🔀 Перемешать: вкл' : '🔀 Перемешать: выкл');
+}
+function cycleRepeat() {
+  const m = ['none','all','one'];
+  repeat = m[(m.indexOf(repeat)+1) % m.length];
+  $('fcRep').classList.toggle('on', repeat !== 'none');
+  toast({none:'🔁 Повтор: выкл', all:'🔁 Повтор: все', one:'🔂 Повтор: трек'}[repeat]);
+}
+
+/* ══════════════════════════════════════
+   SEEK & VOLUME
+══════════════════════════════════════ */
+function seekMini(e) {
+  e.stopPropagation();
+  if(!aud.duration||isNaN(aud.duration)) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  aud.currentTime = ((e.clientX - r.left) / r.width) * aud.duration;
+}
+
+let _db=false, _dv=false;
+$('fbar').addEventListener('touchstart',e=>{_db=true;e.preventDefault();seekFull(e.touches[0]);},{passive:false});
+document.addEventListener('touchmove',e=>{if(_db)seekFull(e.touches[0]);if(_dv)setVol(e.touches[0]);},{passive:false});
+document.addEventListener('touchend',()=>{_db=false;_dv=false;});
+$('fbar').addEventListener('click',e=>seekFull(e));
+$('vt').addEventListener('touchstart',e=>{_dv=true;e.preventDefault();setVol(e.touches[0]);},{passive:false});
+$('vt').addEventListener('click',e=>setVol(e));
+
+function seekFull(e) {
+  const r=$('fbar').getBoundingClientRect();
+  const p=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
+  if(aud.duration) aud.currentTime=p*aud.duration;
+}
+function setVol(e) {
+  const r=$('vt').getBoundingClientRect();
+  volume=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
+  aud.volume=volume;
+  $('vf').style.width=(volume*100)+'%';
+}
+
+/* ══════════════════════════════════════
+   POPOVER
+══════════════════════════════════════ */
+function openPopoverFor(fid) {
+  popFid = fid;
+  const t = library.find(x => x.file_id === fid);
+  if(t) {
+    $('pArt').textContent = t.emoji||'🎵';
+    $('pTN').textContent  = t.title;
+    $('pTA').textContent  = t.artist;
+  }
+  openPopover();
+}
+function openPopover() { $('pov').classList.add('open'); $('pop').classList.add('open'); }
+function closePopover(){ $('pov').classList.remove('open'); $('pop').classList.remove('open'); }
+
+/* ══════════════════════════════════════
+   FULL PLAYER
+══════════════════════════════════════ */
+function openFull() {
+  if(!curFid) return;
+  $('fpl').classList.add('open');
+  const t = getCurTrack();
+  if(t) { updateFull(t); updateLikes(); }
+  if(tg?.BackButton){ tg.BackButton.show(); tg.BackButton.onClick(closeFull); }
+}
+function closeFull() {
+  $('fpl').classList.remove('open');
+  if(tg?.BackButton) tg.BackButton.hide();
+}
+
+// Swipe down to close
+let _sy=0;
+$('fpl').addEventListener('touchstart',e=>{_sy=e.touches[0].clientY;},{passive:true});
+$('fpl').addEventListener('touchend',e=>{if(e.changedTouches[0].clientY-_sy>90){closeFull();haptic('light');}},{passive:true});
+
+/* ══════════════════════════════════════
+   MODAL
+══════════════════════════════════════ */
+function openModal() { $('mov').classList.add('open'); }
+function closeModal(){ $('mov').classList.remove('open'); }
+
+/* ══════════════════════════════════════
+   SHARE
+══════════════════════════════════════ */
+function shareTrack() {
+  const t = getCurTrack(); if(!t) return;
+  const text = `🎵 ${t.title} — ${t.artist} | Wavefy`;
+  if(tg?.switchInlineQuery) tg.switchInlineQuery(text, ['users','groups','channels']);
+  else if(tg?.openTelegramLink) tg.openTelegramLink(`https://t.me/share/url?text=${encodeURIComponent(text)}`);
+  closePopover();
+}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+function nav(name) {
+  showPage(name); haptic('light');
+  if(name === 'library') renderLibrary();
+}
+
+function showPage(name) {
+  ['home','search','library','playlist'].forEach(n => {
+    document.getElementById('page-'+n)?.classList.toggle('active', n===name);
+    document.getElementById('bni-'+n)?.classList.toggle('active', n===name);
+  });
+  if(name !== 'playlist') { curPlId=null; $('fctxN').textContent='Медиатека'; }
+}
+
+/* ══════════════════════════════════════
+   TOAST & HAPTIC
+══════════════════════════════════════ */
+let _tt;
+function toast(msg) {
+  const el=$('toast');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(_tt);
+  _tt=setTimeout(()=>el.classList.remove('show'),2400);
+}
+function haptic(s) {
+  if(!tg?.HapticFeedback) return;
+  const im=['light','medium','heavy','rigid','soft'];
+  const no=['success','error','warning'];
+  if(im.includes(s)) tg.HapticFeedback.impactOccurred(s);
+  else if(no.includes(s)) tg.HapticFeedback.notificationOccurred(s);
+}
+
+/* ══════════════════════════════════════
+   UTILS
+══════════════════════════════════════ */
+function $(id){ return document.getElementById(id); }
+function fmt(s){ if(!s||isNaN(s)) return '0:00'; const m=Math.floor(s/60),ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function shuffArr(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+async function init() {
+  // Greeting
+  const h = new Date().getHours();
+  $('greeting').textContent = h<6?'Доброй ночи 🌙':h<12?'Доброе утро ☀️':h<18?'Добрый день 👋':'Добрый вечер 🎵';
+  if(USER?.first_name) $('gsub').textContent = `Привет, ${USER.first_name}! Что слушаем?`;
+
+  $('vf').style.width = (volume*100)+'%';
+  aud.volume = volume;
+
+  // Загружаем медиатеку
+  await refreshLib();
+
+  // Keyboard (debug)
+  document.addEventListener('keydown', e => {
+    if(e.target.tagName==='INPUT') return;
+    if(e.code==='Space'){ e.preventDefault(); togglePlay(); }
+    if(e.code==='ArrowRight') nextTrack();
+    if(e.code==='ArrowLeft')  prevTrack();
+    if(e.code==='Escape'){ closeFull(); closePopover(); closeModal(); }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
