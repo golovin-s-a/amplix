@@ -250,44 +250,38 @@ async def api_search(q: str = "", limit: int = 40):
 
 @app.get("/api/stream/{file_id:path}")
 async def api_stream(file_id: str, req: Request):
-    uid   = uid_of(req)
-    u     = get_user(uid)
+    channel = req.query_params.get("channel", "")
+    msg_id  = int(req.query_params.get("msg_id", "0"))
+    uid     = uid_of(req)
+    u       = get_user(uid)
+
+    # Ищем в библиотеке
     track = next((t for t in u["tracks"] if t.get("file_id") == file_id), None)
+
+    # Если нет в библиотеке — берём channel/msg_id из параметров
     if not track:
-        return JSONResponse({"error": "track not in library"}, status_code=404)
+        if not channel or not msg_id:
+            return JSONResponse({"error": "track not found"}, status_code=404)
+        track = {"file_id": file_id, "channel": channel, "msg_id": msg_id}
 
-    # Разрешаем bot file_id (из кеша или через forward)
-    bot_fid = track.get("bot_file_id") or ""
-    if not bot_fid:
-        bot_fid = await resolve_bot_fid(track["channel"], track["msg_id"])
-        if bot_fid:
-            track["bot_file_id"] = bot_fid
+    if not _userbot:
+        return JSONResponse({"error": "userbot not ready"}, status_code=503)
 
-    if not bot_fid:
-        return JSONResponse({"error": "cannot resolve file"}, status_code=502)
+    # Стримим напрямую через Telethon
+    async def stream_telethon():
+        try:
+            entity = await _userbot.get_entity(track["channel"])
+            msg    = await _userbot.get_messages(entity, ids=track["msg_id"])
+            async for chunk in _userbot.iter_download(msg.media):
+                yield chunk
+        except Exception as e:
+            log.error(f"Stream error: {e}")
 
-    cdn_url = await get_cdn_url(bot_fid)
-    if not cdn_url:
-        return JSONResponse({"error": "cannot get CDN URL"}, status_code=502)
-
-    range_hdr = req.headers.get("range")
-    hdrs = {"Range": range_hdr} if range_hdr else {}
-
-    async def proxy():
-        async with httpx.AsyncClient() as c:
-            async with c.stream("GET", cdn_url, headers=hdrs, timeout=60) as r:
-                async for chunk in r.aiter_bytes(65536):
-                    yield chunk
-
-    fname = cdn_url.split("?")[0].lower()
-    ct = ("audio/flac" if ".flac" in fname else
-          "audio/ogg"  if ".ogg"  in fname else
-          "audio/mp4"  if ".m4a"  in fname else "audio/mpeg")
-
-    return StreamingResponse(proxy(),
-                             status_code=206 if range_hdr else 200,
-                             media_type=ct,
-                             headers={"Accept-Ranges": "bytes"})
+    return StreamingResponse(
+        stream_telethon(),
+        media_type="audio/mpeg",
+        headers={"Accept-Ranges": "bytes"},
+    )
 
 # ── LIBRARY ──────────────────────────────────────
 @app.get("/api/library")
