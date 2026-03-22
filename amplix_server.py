@@ -268,21 +268,27 @@ async def api_stream(file_id: str, req: Request):
         return JSONResponse({"error": "userbot not ready"}, status_code=503)
 
     # Стримим напрямую через Telethon
-    async def stream_telethon():
-        try:
-            entity = await _userbot.get_entity(track["channel"])
-            msg    = await _userbot.get_messages(entity, ids=track["msg_id"])
-            async for chunk in _userbot.iter_download(msg.media):
-                yield chunk
-        except Exception as e:
-            log.error(f"Stream error: {e}")
+   async def stream_telethon():
+    try:
+        entity = await _userbot.get_entity(track["channel"])
+        msg    = await _userbot.get_messages(entity, ids=int(track["msg_id"]))
+        if not msg or not msg.media:
+            log.error("No message or media found")
+            return
+        async for chunk in _userbot.iter_download(msg.media, chunk_size=512*1024):
+            yield chunk
+    except Exception as e:
+        log.error(f"Stream error: {e}")
 
-    return StreamingResponse(
-        stream_telethon(),
-        media_type="audio/mpeg",
-        headers={"Accept-Ranges": "bytes"},
-    )
-
+return StreamingResponse(
+    stream_telethon(),
+    media_type="audio/mpeg",
+    headers={
+        "Accept-Ranges": "none",
+        "Cache-Control": "no-cache",
+        "Transfer-Encoding": "chunked",
+    },
+)
 # ── LIBRARY ──────────────────────────────────────
 @app.get("/api/library")
 async def api_library(req: Request):
