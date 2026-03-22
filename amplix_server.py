@@ -56,14 +56,7 @@ TG_BOT_API  = f"https://api.telegram.org/bot{BOT_TOKEN}"
 TG_FILE_API = f"https://api.telegram.org/file/bot{BOT_TOKEN}"
 
 MUSIC_CHANNELS = [
-    "musicbasehd",
-    "lossless_music_base",
-    "muzon_base",
-    "music_tg_base",
-    "russianrap_music",
-    "zvuk_bass",
-    "audiofiles_music",
-    "mp3_music_bot",
+    "muzykaa",
 ]
 
 # ───────────────────────────────────────────────
